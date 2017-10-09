@@ -1,4 +1,6 @@
-﻿namespace Brokerage
+﻿using OX.Messages.Brokerage;
+
+namespace Brokerage
 {
     using System;
     using System.Configuration;
@@ -50,13 +52,41 @@
                 return Task.CompletedTask;
             });
 
+            transport.Routing().RouteToEndpoint(typeof(AddNewTrade), "CCI");
+            transport.Routing().RouteToEndpoint(typeof(UpdateTradePrice), "CCI");
+            transport.Routing().RouteToEndpoint(typeof(CancelTrade), "CCI");
+
             var endpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
             Console.WriteLine($"Brokerage '{brokerageId}' endpoint successfully started.");
-            Console.WriteLine("Press any key to exit.");
-            Console.ReadKey();
+            Console.WriteLine("Press N for new trade, C to cancel a trade, U to update a trade. Any other key to exit.");
+            while (true)
+            {
+                var key = Console.ReadKey();
+                Console.WriteLine();
 
-            await endpoint.Stop().ConfigureAwait(false);
+                switch (key.Key)
+                {
+                    case ConsoleKey.N:
+                        var newTrade = new AddNewTrade
+                        {
+                            ParticipantCode = brokerageId,
+                            TradeId = 1,
+                            ProductId = "C5-FTSK",
+                            Quantity = 10000,
+                            Currency = "CAD",
+                            IsMetric = true,
+                            Price = 25000,
+                            TradeDateTimeUtc = DateTimeOffset.UtcNow
+                        };
+                        await endpoint.Send(newTrade).ConfigureAwait(false);
+                        break;
+
+                    default:
+                        await endpoint.Stop().ConfigureAwait(false);
+                        return;
+                }
+            }
         }
     }
 }

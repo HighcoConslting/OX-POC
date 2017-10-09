@@ -72,5 +72,11 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CCI\OX.Messages\OX.Messages.csproj">
+      <Project>{AC2F7FC9-696A-4EE9-8887-8F5AC2FBCFCF}</Project>
+      <Name>OX.Messages</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
