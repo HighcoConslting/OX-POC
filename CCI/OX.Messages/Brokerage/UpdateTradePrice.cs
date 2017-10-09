@@ -7,6 +7,7 @@
     {
         public string ParticipantCode { get; set; }
         public int TradeId { get; set; }
+        public double NewPrice { get; set; }
         public DateTimeOffset UpdateDateTimeUtc { get; set; }
     }
 }

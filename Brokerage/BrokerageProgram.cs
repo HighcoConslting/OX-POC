@@ -59,7 +59,9 @@ namespace Brokerage
             var endpoint = await Endpoint.Start(endpointConfiguration).ConfigureAwait(false);
 
             Console.WriteLine($"Brokerage '{brokerageId}' endpoint successfully started.");
-            Console.WriteLine("Press N for new trade, C to cancel a trade, U to update a trade. Any other key to exit.");
+            Console.WriteLine("Press N for a new trade, C to cancel a trade, U to update a trade. Any other key to exit.");
+            var price = 25000.0;
+            var upOrDown = +1;
             while (true)
             {
                 var key = Console.ReadKey();
@@ -76,10 +78,32 @@ namespace Brokerage
                             Quantity = 10000,
                             Currency = "CAD",
                             IsMetric = true,
-                            Price = 25000,
+                            Price = price,
                             TradeDateTimeUtc = DateTimeOffset.UtcNow
                         };
                         await endpoint.Send(newTrade).ConfigureAwait(false);
+                        break;
+
+                    case ConsoleKey.U:
+                        var updateTradePrice = new UpdateTradePrice
+                        {
+                            ParticipantCode = brokerageId,
+                            TradeId = 1,
+                            NewPrice = price + 5000 * upOrDown,
+                            UpdateDateTimeUtc = DateTimeOffset.UtcNow
+                        };
+                        upOrDown *= -1;
+                        await endpoint.Send(updateTradePrice).ConfigureAwait(false);
+                        break;
+
+                    case ConsoleKey.C:
+                        var cancelTrade = new CancelTrade
+                        {
+                            ParticipantCode = brokerageId,
+                            TradeId = 1,
+                            CancellationDateTimeUtc = DateTimeOffset.UtcNow
+                        };
+                        await endpoint.Send(cancelTrade).ConfigureAwait(false);
                         break;
 
                     default:

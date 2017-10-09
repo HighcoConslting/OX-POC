@@ -40,7 +40,8 @@
                 throw new Exception("Did not find Azure Storage connection string 'AzureStorage.ConnectionString' in App.config file.");
             }
             persistence.ConnectionString(storageConnectionString);
-            
+            persistence.AssumeSecondaryIndicesExist();
+
             endpointConfiguration.UseSerialization<NewtonsoftSerializer>();
             endpointConfiguration.EnableInstallers();
 

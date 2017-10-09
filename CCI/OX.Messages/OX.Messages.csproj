@@ -60,8 +60,12 @@
     <Compile Include="Brokerage\CancelTrade.cs" />
     <Compile Include="Brokerage\AddNewTrade.cs" />
     <Compile Include="Brokerage\UpdateTradePrice.cs" />
+    <Compile Include="CCI\CompleteTradeSaga.cs" />
     <Compile Include="CCI\IndexUpdated.cs" />
     <Compile Include="CCI\ProductTotalsUpdated.cs" />
+    <Compile Include="CCI\RefreshIndexDueToCanceledTrade.cs" />
+    <Compile Include="CCI\RefreshIndexDueToNewTradeAdded.cs" />
+    <Compile Include="CCI\RefreshIndexDueToUpdatedTradePrice.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
