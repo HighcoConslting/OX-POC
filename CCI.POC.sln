@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCI", "CCI.csproj", "{74C30047-D7CA-4D74-B82C-28AE3CA52A9B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CCI", "CCI\CCI.csproj", "{74C30047-D7CA-4D74-B82C-28AE3CA52A9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brokerage", "..\Brokerage\Brokerage.csproj", "{AEF1D245-08BD-48ED-82DF-E8080D9D38F9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Brokerage", "Brokerage\Brokerage.csproj", "{AEF1D245-08BD-48ED-82DF-E8080D9D38F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OX.Messages", "OX.Messages\OX.Messages.csproj", "{AC2F7FC9-696A-4EE9-8887-8F5AC2FBCFCF}"
 EndProject
